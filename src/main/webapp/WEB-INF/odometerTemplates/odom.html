@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+<title>Insert title here</title>
+<style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        div {
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            background-color: #f7f7f7; 
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        p {
+            margin-top: 10px;
+        }
+</style>
+</head>
+	<body>
+		<div>
+			<h1>Odometer</h1>
+			<p><span th:text="${reading}">Initial reading</span></p>
+					
+			<form method="post" action="odom">
+				<button type="submit" id="Lower" class="mutateButton" name = "buttonId" value="Lower">Lower</button>
+				<button type="submit" id="Higher" class="mutateButton" name = "buttonId" value="Higher">Higher</button>
+				<button type="submit" id="Higher" class="mutateButton" name = "buttonId" value="Reset">Reset</button>    
+			</form>
+			<form method="post" action="odom">
+				<label for="odometerSize">Enter Size of Odometer</label>
+				<input type ="number" name = "odometerSize"  min="1" max="9">
+			</form>
+		</div>
+</body>
+</html>

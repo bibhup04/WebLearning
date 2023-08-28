@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500;600;700&display=swap"
+		rel="stylesheet" />
+	<style>
+		body {
+			display: flex;
+			font-family: 'Roboto Slab', sans-serif;
+			margin: 0;
+			justify-content: flex-start;
+			/* Align content to the left */
+			align-items: center;
+			/* Center the content vertically */
+			min-height: 100vh;
+			/* Set a minimum height to the body */
+		}
+
+		.player-list-container {
+			background-color: #f5f5f5;
+			padding: 20px;
+			width: 14%;
+			min-height: 95vh;
+		}
+
+		.matches {
+			background-color: #f0f0f0;
+			border: 1px solid #ddd;
+			padding: 10px 20px;
+			cursor: pointer;
+			display: block;
+			width: 100%;
+			text-align: center;
+			font-weight: bold;
+		}
+
+		.Game-container {
+			flex-grow: 1;
+			/* Take up remaining space */
+			display: flex;
+			justify-content: center;
+			/* Center the grid container horizontally */
+		}
+
+		.grid-container {
+			display: grid;
+			grid-template-rows: auto 1fr auto;
+			grid-template-columns: repeat(4, 1fr);
+			gap: 10px;
+			padding: 20px;
+			background-color: #f0f0f0;
+			align-items: center;
+			justify-items: center;
+		}
+
+		.grid-item {
+			width: 120px;
+			/* Set a fixed width */
+			height: 60px;
+			/* Set a fixed height */
+			border: 1px solid #ddd;
+			padding: 10px;
+			text-align: center;
+			overflow: hidden;
+			/* Hide overflow content */
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		/* Style the dropdowns to match the grid */
+		.grid-item select {
+			width: 100%;
+			padding: 8px;
+			box-sizing: border-box;
+			border: 1px solid #ddd;
+			background-color: white;
+			appearance: none;
+			/* Remove default arrow icon */
+			-webkit-appearance: none;
+			/* Safari and Chrome */
+			-moz-appearance: none;
+			/* Firefox */
+		}
+
+		/* Styles for column headings */
+		.grid-item:nth-child(5),
+		.grid-item:nth-child(6),
+		.grid-item:nth-child(7),
+		.grid-item:nth-child(8) {
+			font-weight: bold;
+		}
+
+		.button-container {
+			display: flex;
+			justify-content: center;
+			margin-top: 20px;
+		}
+
+		.top-buttons {
+			margin-bottom: 20px;
+			/* Add margin at the bottom of top buttons */
+		}
+
+		/* Style the buttons */
+		.button-container button {
+			background-color: #3498db;
+			color: white;
+			padding: 10px 20px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			margin: 0 10px;
+			font-size: 14px;
+			transition: background-color 0.3s ease;
+		}
+
+		/* Hover effect */
+		.button-container button:hover {
+			background-color: #2980b9;
+		}
+	</style>
+	<title>Tennis Game</title>
+</head>
+
+<body>
+	<div class="player-list-container">
+		<h2>Player List</h2>
+		<div class="player-list" th:each="val : ${players}">
+			<div class="player">
+				<p th:text="${val}"></p>
+			</div>
+		</div>
+		<div class="start-game">
+			<form action="" method="post">
+				<select name="player1" id="player1" action="" method="post"> Add dropdown for PLAYER 1
+					<option value="">Select Player 1</option> Add a default option
+					<option th:each="player : ${players}" th:value="${player}" th:text="${player}"></option>
+				</select>
+				<select name="player2" id="player2"> Add dropdown for PLAYER 2
+					<option value="">Select Player 2</option> Add a default option
+					<option th:each="player : ${players}" th:value="${player}" th:text="${player}"></option>
+				</select>
+
+				<!--				    <label for="title">Title:</label>-->
+				<!--						<input type="text" id="title" name="title" placeholder="Enter title" required>-->
+				<button type="submit" class="loadData" name="players" value="players">Submit</button>
+			</form>
+
+		</div>
+
+	</div>
+	<div class="Game-container">
+		<form action="" method="post"> <!-- Add form element -->
+			<div class="button-container top-buttons">
+				<button type="submit" name="initial" value="initial">
+					<<< /button>
+						<button type="submit" name="previous" value="previous">
+							<< /button>
+								<button type="submit" name="next" value="next">></button>
+								<button type="submit" name="last" value="last">>></button>
+			</div>
+			<div class="grid-container">
+				<div class="grid-item"><span th:text="${p1Name}">PLAYER 1</span></div>
+				<div class="grid-item"> <span th:text="${p1Score}"> </div>
+				<div class="grid-item"> <span th:text="${p1Game}"> </div>
+				<div class="grid-item"> <span th:text="${p1Set}"> </div>
+				<div class="grid-item">PLAYERS</div>
+				<div class="grid-item">SCORE</div>
+				<div class="grid-item">GAME WON</div>
+				<div class="grid-item">SET WON</div>
+				<div class="grid-item"><span th:text="${p2Name}">PLAYER 2</span></div>
+				<div class="grid-item"> <span th:text="${p2Score}"> </div>
+				<div class="grid-item"> <span th:text="${p2Game}"> </div>
+				<div class="grid-item"> <span th:text="${p2Set}"> </div>
+			</div>
+			<div class="button-container">
+				<button type="submit" name="p1Won" value="p1Won" th:disabled="${winner}"><span
+						th:text="${p1Name}"></button>
+
+				<button type="submit" name="p2Won" value="p2Won" th:disabled="${winner}"><span
+						th:text="${p2Name}"></button>
+			</div>
+			<span th:text="${winner}">
+		</form>
+		<h2>Previous Matches</h2>
+		<div class="match-list" th:each="val : ${prevMatches}">
+			<button class="matches" type="button">
+				<p th:text="${val}"></p>
+			</button>
+		</div>
+	</div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+    
+        .view {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            margin: 10px;
+        }
+    
+        .AllNotice {
+            display: flex;
+            flex-direction: column;
+        align-items: center;
+        border: 1px solid #ccc;
+        padding: 20px;
+            margin: 10px;
+        }
+    
+        .displayLast6 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #ccc;
+    background-color: #f5f5f5; 
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative; 
+}
+
+.displayLast6::before,
+.displayLast6::after {
+    content: "";
+    position: absolute;
+    top: -10px; 
+    width: 20px;
+    height: 20px;
+    background-color: #f5f5f5; 
+    border: 1px solid #ccc;
+    transform: rotate(45deg);
+}
+
+.displayLast6::before {
+    left: 10px;
+}
+
+.displayLast6::after {
+    right: 10px;
+}
+
+    
+   
+    .nextLine,
+    .firstLine {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .noticeBox {
+        flex: 1;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    margin: 5px;
+    box-sizing: border-box;
+    width: 250px;
+    height: 350px;
+    background-color: #fff; 
+    position: relative; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+    }
+    
+    .noticeBox::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-bottom-color: #ccc;
+    border-top: 0;
+    transform: translateX(-50%);
+}
+
+    .firstNotice,
+    .secondNotice,
+    .thirdNotice,
+    .fourthNotice,
+    .fifthNotice,
+    .sixthNotice {
+        text-align: center;
+    }
+    
+    
+    </style>
+    
+</head>
+<body>
+    
+    <div class="view">
+        <div class="AllNotice">
+            <div class = "addNotic">
+            
+                <h1>ADD NOTICE</h1>
+                <form class="noticeForm" method="post" action="notice">
+                    <label for="heading">Heading</label>
+                    <input type="text" id="heading" name = "heading" placeholder="Enter heading" required>
+                    <br>
+                    <label for="body">Body</label>
+                    <br>
+                    <textarea rows="5" cols="40" id="body" name="body" placeholder="Enter body" required></textarea>
+                    <br>
+                    <label for="author">Author Name</label>
+                    <input type="text" id="author" name="author" placeholder="Author Name" required>
+                    <br>
+                    <button type="submit" class="loadData" name = "btn" value="p1">Submit</button>
+                </form>
+                
+            </div>
+            
+         </div>  
+    
+            <div class="displayLast6">
+				<h1>NOTICE BOARD</h1>
+                <div class="firstLine">
+                    <div class="noticeBox">
+                        <div class="firstNotice">
+                            <h3><span th:text="${heading1}">Heading</span></h3>
+                            <p><span th:text="${body1}">body</span></p>
+                            <h4><span th:text="${author1}">Author</span></h4>
+                        </div>
+                    </div>
+                    <div class="noticeBox">
+                        <div class="secondNotice">
+                            <h3><span th:text="${heading2}">Heading</span></h3>
+                            <p><span th:text="${body2}">body</span></p>
+                            <h4><span th:text="${author2}">Author</span></h4>
+                        </div>
+                    </div>
+                    <div class="noticeBox">
+                        <div class="thirdNotice">
+                            <h3><span th:text="${heading3}">Heading</span></h3>
+                            <p><span th:text="${body3}">body</span></p>
+                            <h4 ><span th:text="${author3}">Author</span></h4>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="nextLine">
+                    <div class="noticeBox">
+                        <div class="fourthNotice">
+                            <h3><span th:text="${heading4}">Heading</span></h3>
+                            <p><span th:text="${body4}">body</span></p>
+                            <h4 ><span th:text="${author4}">Author</span></h4>
+                        </div>
+                    </div>
+                    <div class="noticeBox">
+                        <div class="fifthNotice">
+                            <h3><span th:text="${heading5}">Heading</span></h3>
+                            <p><span th:text="${body5}">body</span></p>
+                            <h4><span th:text="${author5}">Author</span></h4>
+                        </div>
+                    </div>
+                    <div class="noticeBox">
+                        <div class="sixthNotice">
+                            <h3><span th:text="${heading6}">Heading</span></h3>
+                            <p><span th:text="${body6}">body</span></p>
+                            <h4><span th:text="${author6}">Author</span></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,8 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Password Checker</title>
+@charset "UTF-8";
 <style>
     body {
         font-family: Arial, sans-serif;
@@ -42,18 +38,3 @@
         background-color: #0056b3;
     }
 </style>
-</head>
-<body>
-	
-	<form action="passwordValid"  onsubmit="return checkPassword();"method="post">
-		<label for="heading">Enter password</label>
-		<input type="password" name="pass" id="pass" required="true">
-		<label for="heading">Confirm password</label>
-		<input type="password" name="confPass" id="confPass" required="true">
-		<button >Submit!</button>
-	</form>
-	
-	<script src="script.js"></script>
-	
-</body>
-</html>

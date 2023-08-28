@@ -1,5 +1,6 @@
 package com.learning.hello;
 
+import jakarta.servlet.RequestDispatcher; 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -51,15 +52,23 @@ public class passwordValid extends HttpServlet {
 			String password = request.getParameter("pass");
 			System.out.println("password is "+ password);
 			Path path =Paths.get("/home/bibhu04/eclipse-workspace/WebPage/src/main/java/com/learning/hello/passwords.txt");
-		   	List<String> bannedPasswordList = Files.readAllLines(path);
-			if(bannedPasswordList.contains(password))
+		    List<String> bannedPasswordList = Files.readAllLines(path);
+			if(bannedPasswordList.contains(password)){
 				out.println(String.format("<h1>'%s' is a banned password</h1>",password));
-			else
-				out.println("<h1>You have entered a strong password.</h1>");
-		    } catch (IOException e) {
+			}
+				//out.println(String.format("<h1>'%s' is a banned password</h1>",password));
+			else {
+//				out.println("<h1>You have entered a strong password.</h1>");
+				RequestDispatcher rd=request.getRequestDispatcher("WelcomeServlet");
+				rd.forward(request, response);
+			}
+			} catch (IOException e) {
 		      e.printStackTrace();
 		    }
 
-	}	
+	}
+
+	
+	
 
 }
